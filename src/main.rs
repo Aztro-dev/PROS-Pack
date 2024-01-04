@@ -9,6 +9,11 @@ use install::*;
 mod remove;
 use remove::*;
 
+mod list;
+
+mod search;
+use search::*;
+
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
 #[command(next_line_help = true)]
@@ -20,6 +25,8 @@ struct Cli {
 #[derive(Subcommand, Clone, Debug)]
 enum Commands {
     Update,
+    List,
+    Search(SearchArgs),
     Install(InstallArgs),
     Remove(RemoveArgs),
 }
@@ -35,6 +42,15 @@ fn main() {
                 println!("Update failed!");
             };
         }
+
+        Commands::List => {
+            list::list();
+        }
+
+        Commands::Search(search_args) => {
+            search::search_packages(search_args);
+        }
+
         Commands::Install(install_args) => {
             install::install_package(install_args);
         }
