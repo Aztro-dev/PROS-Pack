@@ -28,6 +28,7 @@ enum Commands {
     List,
     Search(SearchArgs),
     Install(InstallArgs),
+    #[clap(visible_alias = "uninstall")]
     Remove(RemoveArgs),
 }
 
