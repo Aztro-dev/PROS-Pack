@@ -16,10 +16,10 @@ pub fn remove_package(args: RemoveArgs) {
     if data.is_none() {
         println!("Couldn't recognize package, available packages are: ");
 
-        const PACKAGE_NAMES: [&str; 2] = ["LemLib", "EZ"];
+        let data = packages::load_data();
 
-        for package in PACKAGE_NAMES {
-            println!("{package}");
+        for package_info in data.iter() {
+            println!("{}", package_info.name);
         }
         std::process::exit(1);
     }
