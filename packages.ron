@@ -1,0 +1,14 @@
+[
+  (
+    name: "lemlib",
+    package_name: "LemLib",
+    url: "https://github.com/LemLib/LemLib/releases/download/v0.4.7/LemLib@0.4.7.zip",
+    zip_name: "LemLib@0.4.7.zip"
+  ),
+  (
+    name: "ez",
+    package_name: "EZ-Template",
+    url: "https://github.com/EZ-Robotics/EZ-Template/releases/download/v2.2.0/EZ-Template@2.2.0.zip",
+    zip_name: "EZ-Template@2.2.0.zip"
+  ),
+]

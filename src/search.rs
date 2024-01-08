@@ -7,10 +7,10 @@ pub struct SearchArgs {
 
 pub fn search_packages(args: SearchArgs) {
     let mut output: String = String::from("");
-    for package in crate::list::PACKAGE_LIST {
-        if package.contains(args.name.clone().as_str()) {
+    for package_information in crate::packages::load_data().iter() {
+        if package_information.matches(args.name.clone()) {
             output.push_str("\n");
-            output.push_str(package);
+            output.push_str(package_information.package_name.as_str());
         }
     }
     if output.is_empty() {

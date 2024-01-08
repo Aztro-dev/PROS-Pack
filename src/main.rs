@@ -14,6 +14,8 @@ mod list;
 mod search;
 use search::*;
 
+mod packages;
+
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
 #[command(next_line_help = true)]

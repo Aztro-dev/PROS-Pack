@@ -1,6 +1,6 @@
 use clap::Args;
 
-const PACKAGE_NAMES: [&str; 2] = ["LemLib", "EZ"];
+use crate::packages;
 
 #[derive(Args, Debug, Clone)]
 pub struct RemoveArgs {
@@ -9,16 +9,23 @@ pub struct RemoveArgs {
 
 pub fn remove_package(args: RemoveArgs) {
     let lowercase = args.name.clone().to_lowercase();
-    let package_name = lowercase_to_package_name(lowercase);
-    if package_name.is_none() {
+    let data = packages::load_data()
+        .into_iter()
+        .filter(|package| package.matches(lowercase.clone()))
+        .next();
+    if data.is_none() {
         println!("Couldn't recognize package, available packages are: ");
+
+        const PACKAGE_NAMES: [&str; 2] = ["LemLib", "EZ"];
+
         for package in PACKAGE_NAMES {
             println!("{package}");
         }
         std::process::exit(1);
     }
+    let data = data.unwrap();
 
-    let package_name = package_name.unwrap();
+    let package_name = data.package_name.clone();
 
     if std::process::Command::new("pros")
         .args(["conductor", "uninstall", package_name.as_str()])
@@ -29,13 +36,4 @@ pub fn remove_package(args: RemoveArgs) {
         std::process::exit(1);
     }
     println!("Uninstall success!");
-}
-
-// Probably have to refactor this too
-fn lowercase_to_package_name(name: String) -> Option<String> {
-    match name.as_str() {
-        "lemlib" => Some("LemLib".to_string()),
-        "ez" => Some("EZ-Template".to_string()),
-        _ => None,
-    }
 }

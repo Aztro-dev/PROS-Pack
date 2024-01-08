@@ -7,4 +7,6 @@ edition = "2021"
 
 [dependencies]
 clap = { version = "4.4.12", features = ["derive"] }
+ron = "0.8.1"
+serde = { version = "1.0.195", features = ["serde_derive"] }
 walkdir = "2.4.0"
