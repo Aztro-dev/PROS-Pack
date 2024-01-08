@@ -11,4 +11,10 @@
     url: "https://github.com/EZ-Robotics/EZ-Template/releases/download/v2.2.0/EZ-Template@2.2.0.zip",
     zip_name: "EZ-Template@2.2.0.zip"
   ),
+  (
+    name: "robodash",
+    package_name: "Robodash",
+    url: "https://github.com/unwieldycat/robodash/releases/download/v2.1.0/robodash@2.1.0.zip",
+    zip_name: "robodash@2.1.0.zip",
+  )
 ]
