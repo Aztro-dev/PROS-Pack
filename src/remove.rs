@@ -35,5 +35,4 @@ pub fn remove_package(args: RemoveArgs) {
         println!("Could not uninstall the package");
         std::process::exit(1);
     }
-    println!("Uninstall success!");
 }

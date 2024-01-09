@@ -54,10 +54,12 @@ fn main() {
 
         Commands::Install(install_args) => {
             install::install_package(install_args);
+            println!("Install success!");
         }
 
         Commands::Remove(remove_args) => {
             remove::remove_package(remove_args);
+            println!("Uninstall success!");
         }
     }
 }
