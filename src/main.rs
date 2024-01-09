@@ -16,6 +16,8 @@ use search::*;
 
 mod packages;
 
+mod utils;
+
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
 #[command(next_line_help = true)]
@@ -26,8 +28,8 @@ struct Cli {
 
 #[derive(Subcommand, Clone, Debug)]
 enum Commands {
-    Update,
     List,
+    Update(UpdateArgs),
     Search(SearchArgs),
     Install(InstallArgs),
     #[clap(visible_alias = "uninstall")]
@@ -38,12 +40,8 @@ fn main() {
     let cli = Cli::parse();
 
     match cli.command {
-        Commands::Update => {
-            if let Some(status) = update_cli() {
-                println!("Updated to version {}", status.version);
-            } else {
-                println!("Update failed!");
-            };
+        Commands::Update(update_args) => {
+            update::update_packages(update_args);
         }
 
         Commands::List => {

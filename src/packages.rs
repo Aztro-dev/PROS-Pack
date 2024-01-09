@@ -19,6 +19,13 @@ impl PackageInformation {
             || str == self.url
             || str == self.zip_name;
     }
+
+    pub fn get_version(&self) -> String {
+        let zip: Vec<&str> = self.zip_name.as_str().split("@").collect(); // Should only be one @ in the zip name
+        let output = zip[1].trim_end_matches(".zip");
+        println!("{output}");
+        return output.to_string();
+    }
 }
 
 /// Yes, this will be used multiple times, no I do not care
